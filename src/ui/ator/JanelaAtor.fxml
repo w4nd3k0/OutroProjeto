@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ator.JanelaAtorController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ator.JanelaAtorController">
    <children>
       <JFXTextField fx:id="textFieldId" editable="false" labelFloat="true" layoutX="22.0" layoutY="16.0" prefHeight="31.0" prefWidth="69.0" promptText="Id" />
       <JFXTextField fx:id="textFieldNome" labelFloat="true" layoutX="18.0" layoutY="81.0" prefHeight="31.0" prefWidth="764.0" promptText="Nome" />
@@ -19,5 +19,6 @@
           <TableColumn fx:id="colNome" prefWidth="688.0" text="Nome" />
         </columns>
       </TableView>
+      <JFXButton layoutX="644.0" layoutY="129.0" onAction="#editar" text="Editar" />
    </children>
 </AnchorPane>
