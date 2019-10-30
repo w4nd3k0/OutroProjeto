@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXTextField;
 import dados.entidades.Ator;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -66,16 +68,50 @@ public class JanelaAtorController implements Initializable {
 
     @FXML
     private void salvar(ActionEvent event) {
+        
+        //Verificar se está atualizando ou inserindo
+        if(textFieldId.getText().isEmpty()){ //inserindo
+            //Pega os dados do fomulário
+            //e cria um objeto ator
+            Ator a = new Ator(textFieldNome.getText());
 
-        //Pega os dados do fomulário
-        //e cria um objeto ator
-        Ator a = new Ator(textFieldNome.getText());
+            //Mandar o ator para a camada de servico
+            servico.salvar(a);
+            
+            //Exibindo mensagem
+            mensagemSucesso("Ator salvo com sucesso!");
+            
+            //Chama o metodo para atualizar a tabela
+            listarAtoresTabela();
+            
+        }else{ //atualizando o ator
+           
+            //Pegando a resposta da confirmacao do usuario
+            Optional<ButtonType> btn = 
+                mensagemDeConfirmacao("Deseja mesmo salvar as alterações?",
+                      "EDITAR");
+            
+            //Se o botão OK foi pressionado
+            if(btn.get() == ButtonType.OK){
+                //Pegar os novos dados do formulário e
+                //atualizar o meu ator
+                selecionado.setNome(textFieldNome.getText());
+                
+                //Mandando pra camada de serviço salvar as alterações
+                servico.editar(selecionado);
+                
+                //Exibindo mensagem
+                mensagemSucesso("Ator atualizado com sucesso!"); 
+                
+                //Chama o metodo para atualizar a tabela
+                 listarAtoresTabela();
+            }
+            
+        }
 
-        //Mandar o ator para a camada de servico
-        servico.salvar(a);
-        //Exibindo mensagem
-        mensagemSucesso("Ator salvo com sucesso!");
+        
         //Limpando o form
+        textFieldId.setText("");
         textFieldNome.setText("");
     }
 
@@ -154,6 +190,20 @@ public class JanelaAtorController implements Initializable {
             mensagemErro("Selecione um ator.");
         }
 
+    }
+    
+    /**
+     * Mostra uma caixa com uma mensagem de confirmação
+     * onde a pessoa vai poder responder se deseja realizar
+     * uma ação
+     */
+    private Optional<ButtonType> mensagemDeConfirmacao(
+            String mensagem, String titulo) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        return alert.showAndWait();
     }
 
 }

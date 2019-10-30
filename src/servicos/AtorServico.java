@@ -31,4 +31,17 @@ public class AtorServico {
         
     }
     
+    /**
+     * Recebe um ator e manda para a camada DAO atualizar 
+     */
+    public void editar(Ator a){
+        
+        //Qualquer regra de negócio (se aplicável)
+        
+        
+        //Mandar a DAO atualizar os dados no BD
+        dao.editar(a);
+        
+    }
+    
 }
