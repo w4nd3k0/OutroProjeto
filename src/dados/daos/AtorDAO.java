@@ -65,5 +65,29 @@ public class AtorDAO {
         gerenciador.getTransaction().commit();
 
     }
+    
+    /**
+     * Exclui o ator do BD
+     */
+    public void excluir(Ator a){
+        
+        //Pegando o gerenciador de acesso ao BD
+        EntityManager gerenciador = JPAUtil.getGerenciador();
+        
+        //Iniciar a transação
+        gerenciador.getTransaction().begin();
+        
+        //Para excluir tem que dar o merge primeiro para 
+        //sincronizar o ator do BD com o ator que foi
+        //selecionado na tela
+        a = gerenciador.merge(a);
+
+        //Mandar sincronizar as alterações 
+        gerenciador.remove(a);
+        
+        //Commit na transação
+        gerenciador.getTransaction().commit();
+        
+    }
 
 }

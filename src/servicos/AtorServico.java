@@ -44,4 +44,15 @@ public class AtorServico {
         
     }
     
+    /**
+     *  Recebe um ator para passar para a DAO excluir no BD
+     */
+    public void excluir(Ator a){
+        
+        //Qualquer regra de negócio (se aplicável)
+        
+        //Mandar para a DAO excluir
+        dao.excluir(a);
+    }
+    
 }

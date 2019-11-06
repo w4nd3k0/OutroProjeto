@@ -20,5 +20,6 @@
         </columns>
       </TableView>
       <JFXButton layoutX="644.0" layoutY="129.0" onAction="#editar" text="Editar" />
+      <JFXButton layoutX="702.0" layoutY="129.0" onAction="#excluir" text="Excluir" />
    </children>
 </AnchorPane>

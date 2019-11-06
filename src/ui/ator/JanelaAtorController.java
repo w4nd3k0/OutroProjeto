@@ -206,4 +206,41 @@ public class JanelaAtorController implements Initializable {
         return alert.showAndWait();
     }
 
+    @FXML
+    private void excluir(ActionEvent event) {
+        
+        //Pegar o ator que foi selecionado na tabela
+        selecionado = tabela.getSelectionModel()
+                .getSelectedItem();
+        
+        //Verifico se tem ator selecionado
+        if(selecionado != null){ //existe ator selecionado
+            
+            //Pegando a resposta da confirmacao do usuario
+            Optional<ButtonType> btn = 
+                mensagemDeConfirmacao("Deseja mesmo excluir?",
+                      "EXCLUIR");
+            
+            //Verificando se apertou o OK
+            if(btn.get() == ButtonType.OK){
+                
+                //Manda para a camada de serviço excluir
+                servico.excluir(selecionado);
+                
+                //mostrar mensagem de sucesso
+                mensagemSucesso("Ator excluído com sucesso");
+                
+                //Atualizar a tabela
+                listarAtoresTabela();              
+                
+            }
+            
+            
+            
+        }else{
+            mensagemErro("Selecione um ator.");
+        }
+        
+    }
+
 }
