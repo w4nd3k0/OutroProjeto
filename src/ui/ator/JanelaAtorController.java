@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import servicos.AtorServico;
+import util.AlertaUtil;
 
 /**
  * FXML Controller class
@@ -42,8 +43,6 @@ public class JanelaAtorController implements Initializable {
     private TableColumn colNome;
 
     //Atributo que representa os dados para tabela
-    //import javafx.collections.FXCollections;
-    //import javafx.collections.ObservableList;
     private ObservableList<Ator> dados
             = FXCollections.observableArrayList();
 
@@ -79,7 +78,7 @@ public class JanelaAtorController implements Initializable {
             servico.salvar(a);
             
             //Exibindo mensagem
-            mensagemSucesso("Ator salvo com sucesso!");
+            AlertaUtil.mensagemSucesso("Ator salvo com sucesso!");
             
             //Chama o metodo para atualizar a tabela
             listarAtoresTabela();
@@ -88,7 +87,7 @@ public class JanelaAtorController implements Initializable {
            
             //Pegando a resposta da confirmacao do usuario
             Optional<ButtonType> btn = 
-                mensagemDeConfirmacao("Deseja mesmo salvar as alterações?",
+                AlertaUtil.mensagemDeConfirmacao("Deseja mesmo salvar as alterações?",
                       "EDITAR");
             
             //Se o botão OK foi pressionado
@@ -101,7 +100,7 @@ public class JanelaAtorController implements Initializable {
                 servico.editar(selecionado);
                 
                 //Exibindo mensagem
-                mensagemSucesso("Ator atualizado com sucesso!"); 
+                AlertaUtil.mensagemSucesso("Ator atualizado com sucesso!"); 
                 
                 //Chama o metodo para atualizar a tabela
                  listarAtoresTabela();
@@ -109,34 +108,22 @@ public class JanelaAtorController implements Initializable {
             
         }
 
+        //Limpando os campos do form
+        limparCampos();
         
+    }
+    
+    /**
+     * Limpa os campos do formulário
+     */
+    private void limparCampos(){
         //Limpando o form
         textFieldId.setText("");
         textFieldNome.setText("");
     }
 
-    public void mensagemSucesso(String m) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("SUCESSO!");
-        alerta.setHeaderText(null);
-        alerta.setContentText(m);
-        alerta.showAndWait();
-    }
-    
     /**
-     * Exibe uma mensagem de erro
-     * @param m 
-     */
-    public void mensagemErro(String m) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("ERRO!");
-        alerta.setHeaderText(null);
-        alerta.setContentText(m);
-        alerta.showAndWait();
-    }
-
-    /**
-     * Fazendo configuração das colunas da tabeça
+     * Fazendo configuração das colunas da tabela
      */
     private void configurarTabela() {
 
@@ -187,24 +174,12 @@ public class JanelaAtorController implements Initializable {
                     String.valueOf( selecionado.getId() ) );
             textFieldNome.setText( selecionado.getNome() );    
         }else{ //não tem ator selecionado na tabela
-            mensagemErro("Selecione um ator.");
+            AlertaUtil.mensagemErro("Selecione um ator.");
         }
 
     }
     
-    /**
-     * Mostra uma caixa com uma mensagem de confirmação
-     * onde a pessoa vai poder responder se deseja realizar
-     * uma ação
-     */
-    private Optional<ButtonType> mensagemDeConfirmacao(
-            String mensagem, String titulo) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        return alert.showAndWait();
-    }
+    
 
     @FXML
     private void excluir(ActionEvent event) {
@@ -218,7 +193,7 @@ public class JanelaAtorController implements Initializable {
             
             //Pegando a resposta da confirmacao do usuario
             Optional<ButtonType> btn = 
-                mensagemDeConfirmacao("Deseja mesmo excluir?",
+                AlertaUtil.mensagemDeConfirmacao("Deseja mesmo excluir?",
                       "EXCLUIR");
             
             //Verificando se apertou o OK
@@ -228,7 +203,7 @@ public class JanelaAtorController implements Initializable {
                 servico.excluir(selecionado);
                 
                 //mostrar mensagem de sucesso
-                mensagemSucesso("Ator excluído com sucesso");
+                AlertaUtil.mensagemSucesso("Ator excluído com sucesso");
                 
                 //Atualizar a tabela
                 listarAtoresTabela();              
@@ -238,7 +213,7 @@ public class JanelaAtorController implements Initializable {
             
             
         }else{
-            mensagemErro("Selecione um ator.");
+            AlertaUtil.mensagemErro("Selecione um ator.");
         }
         
     }

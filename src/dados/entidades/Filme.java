@@ -2,9 +2,10 @@ package dados.entidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -30,6 +31,29 @@ public class Filme {
     
     @ManyToMany
     private Set<Ator> atores = new HashSet<Ator>();
+    
+    //Construtor vazio da JPA (OBRIGATÓRIO)
+    public Filme(){}
+    
+    //Construtor usado na hora de criar um novo filme
+    public Filme(String n, LocalDate dl, BigDecimal a, Genero g){
+        setNome(n);
+        setDataDeLancamento(dl);
+        setArrecadacao(a);
+        setGenero(g);
+    }
+    
+    public String getGeneroNome(){
+        return genero.getNome();
+    }
+    
+    public String getLancamentoFormatado(){
+        DateTimeFormatter formatador = DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.MEDIUM);
+        
+        String formatado = dataDeLancamento.format(formatador);
+        return formatado;
+    }
 
     public Set<Ator> getAtores() {
         return atores;

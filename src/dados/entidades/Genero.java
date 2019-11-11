@@ -56,6 +56,8 @@ public class Genero {
         return true;
     }
     
-    
+    public String toString(){
+        return this.getNome();
+    }
     
 }
