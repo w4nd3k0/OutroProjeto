@@ -14,7 +14,7 @@
         <class>dados.entidades.Ator</class>
         <class>dados.entidades.Genero</class>
         <class>dados.entidades.Filme</class>
-         
+        <class>dados.entidades.Conta</class>
 
         <properties>    
             <!-- Driver de Acesso ao BD -->

@@ -6,11 +6,11 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
     
-    private static EntityManagerFactory fabrica 
+    private static EntityManagerFactory Movimento 
             = Persistence.createEntityManagerFactory("projeto");
     
     public static EntityManager getGerenciador(){
-        return fabrica.createEntityManager();
+        return Movimento.createEntityManager();
     }
     
 }

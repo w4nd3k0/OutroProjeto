@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -91,6 +90,60 @@ public class PrincipalController implements Initializable {
         //Mostrando a nova janela
         stage.show();
         
+    }
+
+    @FXML
+    private void AbrirJanelaConta(ActionEvent event) throws IOException {
+        
+        //Código para abrir uma nova Janela
+        //Ler o FXML que representa a nova janela
+        //(adicionar o throws)
+        Parent root = FXMLLoader.load(getClass()
+                .getResource("/ui/conta/JanelaConta.fxml"));
+        //Criando a cena
+        Scene scene = new Scene(root);
+        //Criando a janela (STAGE) 
+        Stage stage = new Stage(StageStyle.UTILITY);
+        //Titulo na janela
+        stage.setTitle("Cadastrar contas");
+        //Adicionando a cena na janela
+        stage.setScene(scene);
+        
+        //Configurando o MODALITY
+        //Diz respeito ao comportamento das janelas anteriores
+        //quando essa for mostrada
+        //Para bloquear interação com as janelas anteriores
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        //Mostrando a nova janela
+        stage.show();
+    }
+
+    @FXML
+    private void AbrirJanelaLancamento_Conta(ActionEvent event) throws IOException {
+        
+         //Código para abrir uma nova Janela
+        //Ler o FXML que representa a nova janela
+        //(adicionar o throws)
+        Parent root = FXMLLoader.load(getClass()
+                .getResource("/ui/Lancamento_Conta/JanelaLancamento_Conta.fxml"));
+        //Criando a cena
+        Scene scene = new Scene(root);
+        //Criando a janela (STAGE) 
+        Stage stage = new Stage(StageStyle.UTILITY);
+        //Titulo na janela
+        stage.setTitle("Lançamento Conta");
+        //Adicionando a cena na janela
+        stage.setScene(scene);
+        
+        //Configurando o MODALITY
+        //Diz respeito ao comportamento das janelas anteriores
+        //quando essa for mostrada
+        //Para bloquear interação com as janelas anteriores
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        //Mostrando a nova janela
+        stage.show();
     }
     
 }
