@@ -114,4 +114,8 @@ public class Conta {
     
     /*Criar Lista que sera usado em movimento Contas*/
     
+    public String toString(){
+        return this.getNome_Conta();
+    }
+    
 }

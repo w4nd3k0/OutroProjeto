@@ -122,7 +122,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private void AbrirJanelaLancamento_Conta(ActionEvent event) throws IOException {
         
-         //Código para abrir uma nova Janela
+        //Código para abrir uma nova Janela
         //Ler o FXML que representa a nova janela
         //(adicionar o throws)
         Parent root = FXMLLoader.load(getClass()
@@ -133,6 +133,33 @@ public class PrincipalController implements Initializable {
         Stage stage = new Stage(StageStyle.UTILITY);
         //Titulo na janela
         stage.setTitle("Lançamento Conta");
+        //Adicionando a cena na janela
+        stage.setScene(scene);
+        
+        //Configurando o MODALITY
+        //Diz respeito ao comportamento das janelas anteriores
+        //quando essa for mostrada
+        //Para bloquear interação com as janelas anteriores
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        //Mostrando a nova janela
+        stage.show();
+    }
+
+    @FXML
+    private void AbrirJanelaMovimento_Conta(ActionEvent event) throws IOException {
+        
+        //Código para abrir uma nova Janela
+        //Ler o FXML que representa a nova janela
+        //(adicionar o throws)
+        Parent root = FXMLLoader.load(getClass()
+                .getResource("/ui/Movimento_Conta/JanelaMovimento_Conta.fxml"));
+        //Criando a cena
+        Scene scene = new Scene(root);
+        //Criando a janela (STAGE) 
+        Stage stage = new Stage(StageStyle.UTILITY);
+        //Titulo na janela
+        stage.setTitle("Movimento Conta");
         //Adicionando a cena na janela
         stage.setScene(scene);
         

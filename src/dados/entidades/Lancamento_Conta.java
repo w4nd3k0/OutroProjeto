@@ -84,6 +84,10 @@ public class Lancamento_Conta {
         this.Descricao_LancamentoConta = Descricao_LancamentoConta;
     }
     
+    /*Criar Lista que sera usado em movimento Contas*/
     
+    public String toString(){
+        return this.getDescricao_LancamentoConta();
+    }
     
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Movimento_Conta.JanelaMovimento_ContaController">
+   <children>
+      <JFXTextField fx:id="TFID" labelFloat="true" layoutX="14.0" layoutY="27.0" promptText="ID" />
+      <JFXDatePicker fx:id="DPData" layoutX="215.0" layoutY="27.0" promptText="Data" />
+      <JFXTextField fx:id="TFDescricao" labelFloat="true" layoutX="14.0" layoutY="77.0" promptText="Descrição" />
+      <JFXTextField fx:id="TFValor" labelFloat="true" layoutX="220.0" layoutY="77.0" promptText="Valor" />
+      <JFXComboBox fx:id="CBTipo" labelFloat="true" layoutX="484.0" layoutY="77.0" prefHeight="25.0" prefWidth="74.0" promptText="Tipo" />
+      <JFXComboBox fx:id="CBConta" labelFloat="true" layoutX="14.0" layoutY="130.0" promptText="Conta" />
+      <JFXComboBox fx:id="CBLancamento" labelFloat="true" layoutX="220.0" layoutY="130.0" prefHeight="25.0" prefWidth="195.0" promptText="Lançamento" />
+      <Separator layoutX="15.0" layoutY="215.0" prefWidth="570.0" />
+      <JFXButton layoutX="36.0" layoutY="175.0" onAction="#Salvar" text="Salvar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="262.0" layoutY="175.0" onAction="#Editar" text="Editar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="500.0" layoutY="175.0" onAction="#Excluir" text="Excluir">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="TabelaMovimento_Conta" layoutX="14.0" layoutY="228.0" prefHeight="161.0" prefWidth="570.0">
+        <columns>
+          <TableColumn fx:id="COID" prefWidth="43.0" text="ID" />
+          <TableColumn fx:id="COData" prefWidth="100.0" text="Data" />
+            <TableColumn fx:id="CODescricao" prefWidth="146.0" text="Descrição" />
+            <TableColumn fx:id="COValor" prefWidth="57.0" text="Valor" />
+            <TableColumn fx:id="COTipo" prefWidth="57.0" text="Tipo" />
+            <TableColumn fx:id="COConta" prefWidth="76.0" text="Conta" />
+            <TableColumn fx:id="COLancamento" prefWidth="90.0" text="Lançamento" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
