@@ -78,7 +78,7 @@
                   <Menu mnemonicParsing="false" text="Lançamentos">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaLancamento_Conta" text="Contas" />
-                        <MenuItem mnemonicParsing="false" text="Pagamentos" />
+                        <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaLancamento_Pagamento" text="Pagamentos" />
                     </items>
                   </Menu>
                   <MenuItem mnemonicParsing="false" text="Close" />

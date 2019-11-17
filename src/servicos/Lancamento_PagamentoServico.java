@@ -5,34 +5,33 @@
  */
 package servicos;
 
-import dados.daos.Forma_PagamentoDAO;
-import dados.entidades.Conta;
-import dados.entidades.Forma_Pagamento;
+import dados.daos.Lancamento_PagamentoDAO;
+import dados.entidades.Lancamento_Pagamento;
 import java.util.List;
 
 /**
  *
  * @author W4ND3K0
  */
-public class Forma_PagamentoServico {
+public class Lancamento_PagamentoServico {
     
     //Atributo para representar a camada de dados
-    private Forma_PagamentoDAO dao = new Forma_PagamentoDAO();
+    private Lancamento_PagamentoDAO dao = new Lancamento_PagamentoDAO();
     
-    public void salvar(Forma_Pagamento f){
+    public void salvar(Lancamento_Pagamento l){
         //Fazer qualquer regra de negócio
         
-        //Mandar a Forma_Pagamento para a camada de dados
+        //Mandar a Lancamento_Pagamento para a camada de dados
         //para ser salvo no banco de dados
-        dao.salvar(f);
+        dao.salvar(l);
     }
     
     /**
-     * Solicita a camada DAO para buscar as Contas
+     * Solicita a camada DAO para buscar as Lancamento_Pagamento
      * cadastrados
      * @return 
      */
-    public List<Forma_Pagamento> listar(){
+    public List<Lancamento_Pagamento> listar(){
         
         //Qualquer regra de negócio (se aplicável)
         
@@ -41,25 +40,25 @@ public class Forma_PagamentoServico {
     }
     
     /**
-     * Recebe uma Forma_Pagamento e manda para a camada DAO atualizar 
+     * Recebe uma Lancamento_Pagamento e manda para a camada DAO atualizar 
      */
-    public void editar(Forma_Pagamento f){
+    public void editar(Lancamento_Pagamento l){
         
         //Qualquer regra de negócio (se aplicável)
         
         
         //Mandar a DAO atualizar os dados no BD
-        dao.editar(f);
+        dao.editar(l);
     }
     
     /**
      *  Recebe uma Conta para passar para a DAO excluir no BD
      */
-    public void excluir(Forma_Pagamento f){
+    public void excluir(Lancamento_Pagamento l){
         
         //Qualquer regra de negócio (se aplicável)
         
         //Mandar para a DAO excluir
-        dao.excluir(f);
+        dao.excluir(l);
     }
 }
