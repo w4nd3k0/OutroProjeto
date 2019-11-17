@@ -223,10 +223,8 @@ public class JanelaMovimento_ContaController implements Initializable {
                 AlertaUtil.mensagemSucesso("Filme atualizado com sucesso!");
                 
                 //Carregando lista de filmes
-                ListarMovimento_ContaTabela();
-                
-            }
-            
+                ListarMovimento_ContaTabela();   
+            }   
         }
 
         //Limpando o form
@@ -235,10 +233,54 @@ public class JanelaMovimento_ContaController implements Initializable {
 
     @FXML
     private void Editar(ActionEvent event) {
+        
+        //Pegar o Movimento_Conta que foi selecionado na tabela 
+        Selecionado = TabelaMovimento_Conta.getSelectionModel().getSelectedItem();
+
+        //Se tem algum Movimento_Conta selecionado
+        if (Selecionado != null) {
+            
+            //Pega os dados do Movimento_Conta e joga no formulário
+            TFID.setText(String.valueOf(Selecionado.getId_MovimentoConta()));
+            DPData.setValue(Selecionado.getData_MovimentoConta());
+            TFDescricao.setText(Selecionado.getDescricao_MovimentoConta());
+            TFValor.setText(Selecionado.getValor_MovimentoConta().toString());
+            CBTipo.setValue(Selecionado.getTipo_MovimentoConta());
+            CBConta.setValue(Selecionado.getNumero_Conta());
+            CBLancamento.setValue(Selecionado.getLancamentoConta());
+                        
+        }else{//não selecionou Movimento_Conta na tabela
+            AlertaUtil.mensagemErro("Selecione um lançamento.");
+        }
     }
 
     @FXML
     private void Excluir(ActionEvent event) {
+        
+        //Pegar o Movimento_Conta que foi selecionado na tabela 
+        Selecionado = TabelaMovimento_Conta.getSelectionModel().getSelectedItem();
+        
+        //Se tem algum Movimento_Conta selecionado
+        if (Selecionado != null) {
+            
+            //Pegando a resposta da confirmacao do usuario
+            Optional<ButtonType> btn = 
+                AlertaUtil.mensagemDeConfirmacao("Deseja mesmo excluir?",
+                      "EXCLUIR");
+            
+             //Verificando se apertou o OK
+            if(btn.get() == ButtonType.OK){
+                
+                //Manda para a camada de serviço excluir
+                ServicoMovimento_Conta.excluir(Selecionado);
+                
+                //mostrar mensagem de sucesso
+                AlertaUtil.mensagemSucesso("Lançamento excluído com sucesso");
+                
+                //Carregando lista de Movimento_Conta
+                ListarMovimento_ContaTabela();
+            }
+        }
     }
 }
 
