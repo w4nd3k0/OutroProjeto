@@ -73,6 +73,8 @@
           <Menu mnemonicParsing="false" text="Cadastrar">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaConta" text="Contas" />
+                  <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaContato" text="Contatos" />
+                  <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaForma_Pagamento" text="Formas de Pagamento" />
                   <Menu mnemonicParsing="false" text="Lançamentos">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaLancamento_Conta" text="Contas" />
@@ -87,11 +89,16 @@
               <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaMovimento_Conta" text="Movimento em Conta" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Recebimentos">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaRecebimento" text="Cadastrar" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

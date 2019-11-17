@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="ui.Contato.JanelaContatoController">
+   <children>
+      <JFXTextField fx:id="TFID" labelFloat="true" layoutX="14.0" layoutY="27.0" promptText="ID" />
+      <JFXTextField fx:id="TFNome" labelFloat="true" layoutX="187.0" layoutY="27.0" prefHeight="25.0" prefWidth="294.0" promptText="Nome" />
+      <JFXTextField fx:id="TFTelefone" labelFloat="true" layoutX="14.0" layoutY="78.0" promptText="Telefone" />
+      <JFXTextField fx:id="TFBanco" labelFloat="true" layoutX="187.0" layoutY="78.0" prefHeight="25.0" prefWidth="106.0" promptText="Banco" />
+      <JFXTextField fx:id="TFAgencia" labelFloat="true" layoutX="326.0" layoutY="78.0" prefHeight="25.0" prefWidth="106.0" promptText="Agência" />
+      <JFXTextField fx:id="TFConta" labelFloat="true" layoutX="464.0" layoutY="78.0" prefHeight="25.0" prefWidth="106.0" promptText="Conta" />
+      <JFXButton layoutX="56.0" layoutY="128.0" onAction="#Salvar" text="Salvar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="268.0" layoutY="128.0" onAction="#Editar" text="Editar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="500.0" layoutY="128.0" onAction="#Excuir" text="Excluir">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="TabelaContato" layoutX="14.0" layoutY="186.0" prefHeight="200.0" prefWidth="575.0">
+        <columns>
+          <TableColumn fx:id="COID" prefWidth="56.0" text="ID" />
+          <TableColumn fx:id="CONome" prefWidth="187.0" text="Nome" />
+            <TableColumn fx:id="CoTelefone" prefWidth="101.0" text="Telefone" />
+            <TableColumn fx:id="COBanco" prefWidth="66.0" text="Banco" />
+            <TableColumn fx:id="COAgencia" prefWidth="72.0" text="Agência" />
+            <TableColumn fx:id="COConta" prefWidth="92.0" text="Conta" />
+        </columns>
+      </TableView>
+      <Separator layoutX="13.0" layoutY="168.0" prefWidth="575.0" />
+   </children>
+</AnchorPane>

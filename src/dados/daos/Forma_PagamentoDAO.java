@@ -5,7 +5,7 @@
  */
 package dados.daos;
 
-import dados.entidades.Conta;
+import dados.entidades.Forma_Pagamento;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,12 +15,12 @@ import util.JPAUtil;
  *
  * @author W4ND3K0
  */
-public class ContaDAO {
+public class Forma_PagamentoDAO {
     
     /**
-     * Salvar a Conta no BD
+     * Salvar a Forma_Pagamento no BD
      */
-    public void salvar(Conta a) {
+    public void salvar(Forma_Pagamento f) {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -28,8 +28,8 @@ public class ContaDAO {
         //Iniciar a transação
         gerenciador.getTransaction().begin();
 
-        //Mandar persistir o ator
-        gerenciador.persist(a);
+        //Mandar persistir o Forma_Pagamento
+        gerenciador.persist(f);
 
         //Commit
         gerenciador.getTransaction().commit();
@@ -37,29 +37,28 @@ public class ContaDAO {
     }
 
     /**
-     * Retorna uma lista com todos as Conta que estejam cadastrados no banco de
+     * Retorna uma lista com todos as Forma_Pagamento que estejam cadastrados no banco de
      * dados
      *
      * @return
      */
-    public List<Conta> listar() {
+    public List<Forma_Pagamento> listar() {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
 
         //Criando a consulta ao BD
         TypedQuery consulta = gerenciador.createQuery(
-                "Select a from Conta a", Conta.class);
+                "Select f from Forma_Pagamento f", Forma_Pagamento.class);
 
-        //Retornar a lista de Contas
+        //Retornar a lista de Forma_Pagamento
         return consulta.getResultList();
-
     }
 
     /**
      * Salva as alterações no BD
      */
-    public void editar(Conta a) {
+    public void editar(Forma_Pagamento f) {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -68,17 +67,16 @@ public class ContaDAO {
         gerenciador.getTransaction().begin();
 
         //Mandar sincronizar as alterações 
-        gerenciador.merge(a);
+        gerenciador.merge(f);
         
         //Commit na transação
         gerenciador.getTransaction().commit();
-
     }
     
     /**
-     * Exclui a Conta do BD
+     * Exclui a Forma_Pagamento do BD
      */
-    public void excluir(Conta a){
+    public void excluir(Forma_Pagamento f){
         
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -87,14 +85,14 @@ public class ContaDAO {
         gerenciador.getTransaction().begin();
         
         //Para excluir tem que dar o merge primeiro para 
-        //sincronizar a conta do BD com a conta que foi
+        //sincronizar a Forma_Pagamento do BD com a Forma_Pagamento que foi
         //selecionado na tela
-        a = gerenciador.merge(a);
+        f = gerenciador.merge(f);
 
         //Mandar sincronizar as alterações 
-        gerenciador.remove(a);
+        gerenciador.remove(f);
         
         //Commit na transação
-        gerenciador.getTransaction().commit();  
-    }    
+        gerenciador.getTransaction().commit();   
+    }
 }

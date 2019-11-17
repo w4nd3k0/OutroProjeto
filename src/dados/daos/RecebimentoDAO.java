@@ -5,7 +5,7 @@
  */
 package dados.daos;
 
-import dados.entidades.Conta;
+import dados.entidades.Recebimento;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,12 +15,12 @@ import util.JPAUtil;
  *
  * @author W4ND3K0
  */
-public class ContaDAO {
+public class RecebimentoDAO {
     
     /**
-     * Salvar a Conta no BD
+     * Salvar o Recebimento no BD
      */
-    public void salvar(Conta a) {
+    public void salvar(Recebimento r) {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -28,8 +28,8 @@ public class ContaDAO {
         //Iniciar a transação
         gerenciador.getTransaction().begin();
 
-        //Mandar persistir o ator
-        gerenciador.persist(a);
+        //Mandar persistir o Recebimento
+        gerenciador.persist(r);
 
         //Commit
         gerenciador.getTransaction().commit();
@@ -37,19 +37,19 @@ public class ContaDAO {
     }
 
     /**
-     * Retorna uma lista com todos as Conta que estejam cadastrados no banco de
+     * Retorna uma lista com todos os Recebimentos que estejam cadastrados no banco de
      * dados
      *
      * @return
      */
-    public List<Conta> listar() {
+    public List<Recebimento> listar() {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
 
         //Criando a consulta ao BD
         TypedQuery consulta = gerenciador.createQuery(
-                "Select a from Conta a", Conta.class);
+                "Select r from Recebimento r", Recebimento.class);
 
         //Retornar a lista de Contas
         return consulta.getResultList();
@@ -59,7 +59,7 @@ public class ContaDAO {
     /**
      * Salva as alterações no BD
      */
-    public void editar(Conta a) {
+    public void editar(Recebimento r) {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -68,7 +68,7 @@ public class ContaDAO {
         gerenciador.getTransaction().begin();
 
         //Mandar sincronizar as alterações 
-        gerenciador.merge(a);
+        gerenciador.merge(r);
         
         //Commit na transação
         gerenciador.getTransaction().commit();
@@ -76,9 +76,9 @@ public class ContaDAO {
     }
     
     /**
-     * Exclui a Conta do BD
+     * Exclui o Recebimento do BD
      */
-    public void excluir(Conta a){
+    public void excluir(Recebimento r){
         
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -87,14 +87,14 @@ public class ContaDAO {
         gerenciador.getTransaction().begin();
         
         //Para excluir tem que dar o merge primeiro para 
-        //sincronizar a conta do BD com a conta que foi
+        //sincronizar o Recebimento do BD com a conta que foi
         //selecionado na tela
-        a = gerenciador.merge(a);
+        r = gerenciador.merge(r);
 
         //Mandar sincronizar as alterações 
-        gerenciador.remove(a);
+        gerenciador.remove(r);
         
         //Commit na transação
-        gerenciador.getTransaction().commit();  
-    }    
+        gerenciador.getTransaction().commit();   
+    }
 }

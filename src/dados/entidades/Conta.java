@@ -39,7 +39,7 @@ public class Conta {
         this.Banco_Conta = Banco_Conta;
         this.Agencia_Conta = Agencia_Conta;
         this.Numero_Conta = Numero_Conta;
-    }  
+    }
     
     /*Equals e hashCode*/
 

@@ -15,9 +15,12 @@
         <class>dados.entidades.Genero</class>
         <class>dados.entidades.Filme</class>
         <class>dados.entidades.Conta</class> 
+        <class>dados.entidades.Contato</class> 
+        <class>dados.entidades.Forma_Pagamento</class>
         <class>dados.entidades.Lancamento_Conta</class>
         <class>dados.entidades.Movimento_Conta</class>
-            
+        <class>dados.entidades.Recebimento</class> 
+        
         <properties>    
             <!-- Driver de Acesso ao BD -->
             <property name="javax.persistence.jdbc.driver" 

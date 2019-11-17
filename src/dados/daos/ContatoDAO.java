@@ -5,7 +5,7 @@
  */
 package dados.daos;
 
-import dados.entidades.Conta;
+import dados.entidades.Contato;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,51 +15,50 @@ import util.JPAUtil;
  *
  * @author W4ND3K0
  */
-public class ContaDAO {
+public class ContatoDAO {
     
     /**
-     * Salvar a Conta no BD
-     */
-    public void salvar(Conta a) {
-
-        //Pegando o gerenciador de acesso ao BD
-        EntityManager gerenciador = JPAUtil.getGerenciador();
-
-        //Iniciar a transação
-        gerenciador.getTransaction().begin();
-
-        //Mandar persistir o ator
-        gerenciador.persist(a);
-
-        //Commit
-        gerenciador.getTransaction().commit();
-
-    }
-
-    /**
-     * Retorna uma lista com todos as Conta que estejam cadastrados no banco de
-     * dados
-     *
-     * @return
-     */
-    public List<Conta> listar() {
+    * Retorna uma lista com todos os Contatos que estejam cadastrados no banco de
+    * dados
+    *
+    * @return
+    */
+    public List<Contato> listar() {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
 
         //Criando a consulta ao BD
         TypedQuery consulta = gerenciador.createQuery(
-                "Select a from Conta a", Conta.class);
+                "Select c from Contato c", Contato.class);
 
-        //Retornar a lista de Contas
+        //Retornar a lista de Movimento_Conta
         return consulta.getResultList();
-
     }
 
     /**
+     * Manda salvar um Contato no BD
+     *  
+     */
+    public void salvar(Contato c) {
+        
+        //Pegando o gerenciador de acesso ao BD
+        EntityManager gerenciador = JPAUtil.getGerenciador();
+        
+        //Iniciar a transação
+        gerenciador.getTransaction().begin();
+
+        //Mandar persistir o Contato
+        gerenciador.persist(c);
+
+        //Commit
+        gerenciador.getTransaction().commit();
+    }
+    
+    /**
      * Salva as alterações no BD
      */
-    public void editar(Conta a) {
+    public void editar(Contato c) {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -68,33 +67,32 @@ public class ContaDAO {
         gerenciador.getTransaction().begin();
 
         //Mandar sincronizar as alterações 
-        gerenciador.merge(a);
+        gerenciador.merge(c);
         
         //Commit na transação
         gerenciador.getTransaction().commit();
-
     }
     
     /**
-     * Exclui a Conta do BD
+     * Exclui o Contato do BD
      */
-    public void excluir(Conta a){
+    public void excluir(Contato c){
         
-        //Pegando o gerenciador de acesso ao BD
+         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
         
         //Iniciar a transação
         gerenciador.getTransaction().begin();
         
         //Para excluir tem que dar o merge primeiro para 
-        //sincronizar a conta do BD com a conta que foi
+        //sincronizar o ator do BD com o Contato que foi
         //selecionado na tela
-        a = gerenciador.merge(a);
+        c = gerenciador.merge(c);
 
         //Mandar sincronizar as alterações 
-        gerenciador.remove(a);
+        gerenciador.remove(c);
         
         //Commit na transação
-        gerenciador.getTransaction().commit();  
-    }    
+        gerenciador.getTransaction().commit();
+    }   
 }
