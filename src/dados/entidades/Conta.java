@@ -68,7 +68,7 @@ public class Conta {
         return true;
     }
 
-    /*Get's*/
+    /*Set's*/
     
     public void setId_Conta(Integer Id_Conta) {
         this.Id_Conta = Id_Conta;
