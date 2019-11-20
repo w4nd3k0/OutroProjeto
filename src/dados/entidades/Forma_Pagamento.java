@@ -83,5 +83,9 @@ public class Forma_Pagamento {
         this.Descricao_FormaPagamento = Descricao_FormaPagamento;
     }
     
+    /*Criar Lista que sera usado em Recebimentos e Pagamentos*/
     
+    public String toString(){
+        return this.getDescricao_FormaPagamento();
+    }
 }

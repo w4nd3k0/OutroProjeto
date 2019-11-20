@@ -80,4 +80,10 @@ public class Lancamento_Pagamento {
     public void setDescricao_LancamentoPagamento(String Descricao_LancamentoPagamento) {
         this.Descricao_LancamentoPagamento = Descricao_LancamentoPagamento;
     }
+    
+    /*Criar Lista que sera usado em Recebimentos e Pagamentos*/
+    
+    public String toString(){
+        return this.getDescricao_LancamentoPagamento();
+    }
 }

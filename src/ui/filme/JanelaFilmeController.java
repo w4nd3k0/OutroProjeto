@@ -25,6 +25,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import servicos.AtorServico;
 import servicos.FilmeServico;
 import servicos.GeneroServico;
@@ -71,6 +72,8 @@ public class JanelaFilmeController implements Initializable {
     //Atributo para representar o filme selecionado
     //na tabela para editar e excluir
     private Filme selecionado;
+    @FXML
+    private JFXTextField TFNomePesquisa;
 
     /**
      * Initializes the controller class.
@@ -256,10 +259,47 @@ public class JanelaFilmeController implements Initializable {
                 
                 //Carregando lista de filmes
                 listarFilmesTabela();
-            }
-            
+            }   
         }
+    }
+
+    @FXML
+    private void Pesquisar(ActionEvent event) {
         
+        //Limpando quaisquer dados anteriores
+        dados.clear();
+        
+        //pegando o nome que a pessia deseja pesquisar
+        String nome = TFNomePesquisa.getText();        
+
+        //Solicitando a camada de servico a lista de filmes
+        List<Filme> filmes = filmeServico.BuscarNomeFilme(nome);
+
+        //Transformar a lista de atores no formato que a tabela
+        //do JavaFX aceita
+        dados = FXCollections.observableArrayList(filmes);
+
+        //Jogando os dados na tabela
+        tabela.setItems(dados);
+    }
+
+    @FXML
+    private void Pesquisar(MouseEvent event) {
+                //Limpando quaisquer dados anteriores
+        dados.clear();
+        
+        //pegando o nome que a pessia deseja pesquisar
+        String nome = TFNomePesquisa.getText();        
+
+        //Solicitando a camada de servico a lista de filmes
+        List<Filme> filmes = filmeServico.BuscarNomeFilme(nome);
+
+        //Transformar a lista de atores no formato que a tabela
+        //do JavaFX aceita
+        dados = FXCollections.observableArrayList(filmes);
+
+        //Jogando os dados na tabela
+        tabela.setItems(dados);
     }
 
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="ui.Meu_Pagamento.JanelaMeu_PagamentoController">
+   <children>
+      <JFXTextField fx:id="TFID" labelFloat="true" layoutX="14.0" layoutY="14.0" promptText="ID" />
+      <JFXDatePicker fx:id="DPVencimento" layoutX="14.0" layoutY="65.0" overLay="true" promptText="Data de Vencimento" />
+      <JFXDatePicker fx:id="DPPagamento" layoutX="207.0" layoutY="65.0" overLay="true" promptText="Data de Pagamento" />
+      <JFXTextField fx:id="TFValor" labelFloat="true" layoutX="408.0" layoutY="65.0" promptText="Valor" />
+      <JFXComboBox fx:id="CBContato" labelFloat="true" layoutX="14.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Contato" />
+      <JFXComboBox fx:id="CBLancamento" labelFloat="true" layoutX="207.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Lançamento" />
+      <JFXComboBox fx:id="CBForma" labelFloat="true" layoutX="408.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Forma Pagamento" />
+      <Separator layoutX="15.0" layoutY="194.0" prefWidth="570.0" />
+      <JFXButton layoutX="56.0" layoutY="160.0" onAction="#Salvar" text="Salvar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="275.0" layoutY="160.0" onAction="#Editar" text="Editar">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="468.0" layoutY="160.0" onAction="#Excluir" text="Excluir">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="TabelaMeuPagamento" layoutX="15.0" layoutY="207.0" prefHeight="179.0" prefWidth="570.0">
+        <columns>
+          <TableColumn fx:id="COID" prefWidth="44.0" text="ID" />
+          <TableColumn fx:id="COVencimento" prefWidth="106.0" text="Vencimento" />
+            <TableColumn fx:id="COPagamento" prefWidth="75.0" text="Pagamento" />
+            <TableColumn fx:id="COValor" prefWidth="75.0" text="Valor" />
+            <TableColumn fx:id="COContato" prefWidth="99.0" text="Contato" />
+            <TableColumn fx:id="COLancamento" prefWidth="76.0" text="Lançamento" />
+            <TableColumn fx:id="COForma" prefWidth="94.0" text="Forma" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

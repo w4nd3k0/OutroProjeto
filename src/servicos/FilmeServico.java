@@ -59,4 +59,12 @@ public class FilmeServico {
         dao.excluir(f);
     }
     
+    public List<Filme> BuscarNomeFilme(String nome){
+        
+        //Qualquer regra de negocios
+        
+        //mandar para a DAO buscar os filmes pelo nome
+        return dao.BuscarNomeFilme(nome);    
+    }
+    
 }

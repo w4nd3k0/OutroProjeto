@@ -1,41 +1,46 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dados.daos;
 
-import dados.entidades.Ator;
-import dados.entidades.Filme;
+import dados.entidades.Meu_Pagamento;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import util.JPAUtil;
 
-
-public class FilmeDAO {
+/**
+ *
+ * @author IFNMG
+ */
+public class Meu_PagamentoDAO {
     
     /**
-     * Retorna uma lista com todos os atores que estejam cadastrados no banco de
-     * dados
-     *
-     * @return
-     */
-    public List<Filme> listar() {
+    * Retorna uma lista com todos os Meu_Pagamento que estejam cadastrados no banco de
+    * dados
+    *
+    * @return
+    */
+    public List<Meu_Pagamento> listar() {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
 
         //Criando a consulta ao BD
         TypedQuery consulta = gerenciador.createQuery(
-                "Select f from Filme f", Filme.class);
+                "Select m from Meu_Pagamento m", Meu_Pagamento.class);
 
-        //Retornar a lista de atores
+        //Retornar a lista de Movimento_Conta
         return consulta.getResultList();
-
     }
 
     /**
-     * Manda salvar um filme no BD
+     * Manda salvar um Meu_Pagamento no BD
      *  
      */
-    public void salvar(Filme f) {
+    public void salvar(Meu_Pagamento m) {
         
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -43,18 +48,17 @@ public class FilmeDAO {
         //Iniciar a transação
         gerenciador.getTransaction().begin();
 
-        //Mandar persistir o ator
-        gerenciador.persist(f);
+        //Mandar persistir o Movimento_Conta
+        gerenciador.persist(m);
 
         //Commit
         gerenciador.getTransaction().commit();
-        
     }
     
     /**
      * Salva as alterações no BD
      */
-    public void editar(Filme f) {
+    public void editar(Meu_Pagamento m) {
 
         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
@@ -63,53 +67,32 @@ public class FilmeDAO {
         gerenciador.getTransaction().begin();
 
         //Mandar sincronizar as alterações 
-        gerenciador.merge(f);
+        gerenciador.merge(m);
         
         //Commit na transação
         gerenciador.getTransaction().commit();
-
     }
     
     /**
-     * Exclui o filme do BD
+     * Exclui o Meu_Pagamento do BD
      */
-    public void excluir(Filme f){
+    public void excluir(Meu_Pagamento m){
         
-        //Pegando o gerenciador de acesso ao BD
+         //Pegando o gerenciador de acesso ao BD
         EntityManager gerenciador = JPAUtil.getGerenciador();
         
         //Iniciar a transação
         gerenciador.getTransaction().begin();
         
         //Para excluir tem que dar o merge primeiro para 
-        //sincronizar o ator do BD com o ator que foi
+        //sincronizar o ator do BD com o Meu_Pagamento que foi
         //selecionado na tela
-        f = gerenciador.merge(f);
+        m = gerenciador.merge(m);
 
         //Mandar sincronizar as alterações 
-        gerenciador.remove(f);
+        gerenciador.remove(m);
         
         //Commit na transação
         gerenciador.getTransaction().commit();
     }
-    
-    public List<Filme> BuscarNomeFilme(String nome){
-        
-        //Pegando o gerenciador de acesso ao BD
-        EntityManager gerenciador = JPAUtil.getGerenciador();
-        
-        //Criando a consulta ao BD
-        //:nome entidade criada para comparar o nome buscado
-        //Ordenando o resultado buscado
-        TypedQuery<Filme> consulta = gerenciador.createQuery(
-                "Select f from Filme f where f.nome like :nome order by f.nome", Filme.class);
-        
-        //Substituindo o paramentro
-        //"%" buscar similares de acordo com o que foi digitado
-        consulta.setParameter("nome", nome + "%");
-        
-        //Retorna os dados
-        return consulta.getResultList();
-    }
-    
 }
