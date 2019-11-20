@@ -31,7 +31,7 @@
             <TableColumn fx:id="colGenero" prefWidth="140.0" text="Gênero" />
         </columns>
       </TableView>
-      <JFXTextField fx:id="TFNomePesquisa" labelFloat="true" layoutX="17.0" layoutY="190.0" onDragDetected="#Pesquisar" prefHeight="25.0" prefWidth="296.0" promptText="Nome" />
+      <JFXTextField fx:id="TFNomePesquisa" labelFloat="true" layoutX="17.0" layoutY="190.0" onDragDetected="#Pesquisar" onInputMethodTextChanged="#Pesquisar" prefHeight="25.0" prefWidth="296.0" promptText="Nome" />
       <JFXButton layoutX="398.0" layoutY="190.0" onAction="#Pesquisar" text="Pesquisar" />
    </children>
 </AnchorPane>

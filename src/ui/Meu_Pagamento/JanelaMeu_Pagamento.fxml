@@ -10,12 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="ui.Meu_Pagamento.JanelaMeu_PagamentoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Meu_Pagamento.JanelaMeu_PagamentoController">
    <children>
       <JFXTextField fx:id="TFID" labelFloat="true" layoutX="14.0" layoutY="14.0" promptText="ID" />
-      <JFXDatePicker fx:id="DPVencimento" layoutX="14.0" layoutY="65.0" overLay="true" promptText="Data de Vencimento" />
-      <JFXDatePicker fx:id="DPPagamento" layoutX="207.0" layoutY="65.0" overLay="true" promptText="Data de Pagamento" />
       <JFXTextField fx:id="TFValor" labelFloat="true" layoutX="408.0" layoutY="65.0" promptText="Valor" />
       <JFXComboBox fx:id="CBContato" labelFloat="true" layoutX="14.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Contato" />
       <JFXComboBox fx:id="CBLancamento" labelFloat="true" layoutX="207.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Lançamento" />
@@ -47,5 +44,7 @@
             <TableColumn fx:id="COForma" prefWidth="94.0" text="Forma" />
         </columns>
       </TableView>
+      <JFXDatePicker fx:id="DPVencimento" layoutX="14.0" layoutY="65.0" promptText="Data Vencimento" />
+      <JFXDatePicker fx:id="DPVencimento" layoutX="207.0" layoutY="65.0" promptText="Data Pagamento" />
    </children>
 </AnchorPane>

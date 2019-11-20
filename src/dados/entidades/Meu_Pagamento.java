@@ -8,6 +8,7 @@ package dados.entidades;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import javax.persistence.ManyToOne;
  *
  * @author IFNMG
  */
+@Entity
 public class Meu_Pagamento {
     
     @Id
@@ -48,7 +50,7 @@ public class Meu_Pagamento {
         this.Valor_MeuPagamento = Valor_MeuPagamento;
         this.Contato_MeuPagamento = Contato_MeuPagamento;
         this.Lancamento_MeuPagamento = Lancamento_MeuPagamento;
-        this.Forma_MeuPagamento = Tipo_MeuPagamento;
+        this.Forma_MeuPagamento = Forma_MeuPagamento;
     }
         
     /*Equals e hashCode*/
@@ -104,7 +106,7 @@ public class Meu_Pagamento {
         return Lancamento_MeuPagamento;
     }
     
-    public Forma_Pagamento getTipo_MeuPagamento() {
+    public Forma_Pagamento getForma_MeuPagamento() {
         return Forma_MeuPagamento;
     }
 
@@ -133,8 +135,8 @@ public class Meu_Pagamento {
         this.Lancamento_MeuPagamento = Lancamento_MeuPagamento;
     }
 
-    public void setTipo_MeuPagamento(Forma_Pagamento Tipo_MeuPagamento) {
-        this.Forma_MeuPagamento = Tipo_MeuPagamento;
+    public void setForma_MeuPagamento(Forma_Pagamento Forma_MeuPagamento) {
+        this.Forma_MeuPagamento = Forma_MeuPagamento;
     }   
     
 }
