@@ -14,6 +14,7 @@ import dados.entidades.Lancamento_Pagamento;
 import dados.entidades.Meu_Pagamento;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -42,7 +43,10 @@ public class JanelaMeu_PagamentoController implements Initializable {
     @FXML
     private JFXTextField TFID;
     @FXML
+    private JFXTextField TFDescricao;
+    @FXML
     private JFXDatePicker DPVencimento;
+    @FXML
     private JFXDatePicker DPPagamento;
     @FXML
     private JFXTextField TFValor;
@@ -68,16 +72,21 @@ public class JanelaMeu_PagamentoController implements Initializable {
     private TableColumn COLancamento;
     @FXML
     private TableColumn COForma;
+    @FXML
+    private TableColumn CODescricao;
+    
+    
         
     //Atributo que representa os dados para tabela
     private ObservableList<Meu_Pagamento> Dados
             = FXCollections.observableArrayList();
     
     //Atributos para representar os servicos
+    private Meu_PagamentoServico ServicoMeu_Pagamento = new Meu_PagamentoServico();
+    
     private Forma_PagamentoServico ServicoForma_Pagamento = new Forma_PagamentoServico();
     private Lancamento_PagamentoServico ServicoLancamento_Pagamento = new Lancamento_PagamentoServico();
     private ContatoServico ServicoContato = new ContatoServico();
-    private Meu_PagamentoServico ServicoMeu_Pagamento = new Meu_PagamentoServico();
     
     //Atributo para representar o Movimento_Conta selecionado
     //na tabela para editar e excluir
@@ -106,9 +115,9 @@ public class JanelaMeu_PagamentoController implements Initializable {
         
     }
     
-        /**
-     * Fazendo configuração das colunas da tabela
-     */
+    /**
+    * Fazendo configuração das colunas da tabela
+    */
     private void ConfigurarTabelaMeu_Pagamento() {
 
         //Dizer de onde a coluna vai pegar o valor para
@@ -118,12 +127,13 @@ public class JanelaMeu_PagamentoController implements Initializable {
         // que vc deseja chamar o get (quase sempre)
         //import javafx.scene.control.cell.PropertyValueFactory;
         COID.setCellValueFactory(new PropertyValueFactory("Id_MeuPagamento"));
-        COVencimento.setCellValueFactory(new PropertyValueFactory("Vencimento_MeuPagamento"));
-        COPagamento.setCellValueFactory(new PropertyValueFactory("Pagamento_MeuPagamento"));
+        CODescricao.setCellValueFactory(new PropertyValueFactory("Desc_MeuPagamento"));
+        COVencimento.setCellValueFactory(new PropertyValueFactory("Vencimento_MeuPagamentoFormatado"));
+        COPagamento.setCellValueFactory(new PropertyValueFactory("Pagamento_MeuPagamentoFormatado"));
         COValor.setCellValueFactory(new PropertyValueFactory("Valor_MeuPagamento"));
-        COContato.setCellValueFactory(new PropertyValueFactory("Contato_MeuPagamento"));
-        COLancamento.setCellValueFactory(new PropertyValueFactory("Lancamento_MeuPagamento"));
-        COForma.setCellValueFactory(new PropertyValueFactory("Forma_MeuPagamento"));
+        COContato.setCellValueFactory(new PropertyValueFactory("Contato_MeuPagamentoNome"));
+        COLancamento.setCellValueFactory(new PropertyValueFactory("Lancamento_MeuPagamentoNome"));
+        COForma.setCellValueFactory(new PropertyValueFactory("Forma_MeuPagamentoNome"));
     }
     
         private void ListarMeu_PagamentoTabela() {
@@ -176,6 +186,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
     */
     private void LimparCampos() {
         TFID.setText("");
+        TFDescricao.setText("");
         DPVencimento.setValue(null);
         DPPagamento.setValue(null);
         TFValor.setText("");
@@ -183,6 +194,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
         CBLancamento.setValue(null);
         CBForma.setValue(null);
     }
+    
      
     @FXML 
     private void Salvar(ActionEvent event) {
@@ -191,7 +203,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
         if (TFID.getText().isEmpty()) { //inserindo
 
             //Criando o objeto Meu_Pagamento
-            Meu_Pagamento m = new Meu_Pagamento(DPVencimento.getValue(), DPPagamento.getValue(), new BigDecimal(TFValor.getText()), CBContato.getValue(), CBLancamento.getValue(), CBForma.getValue());
+            Meu_Pagamento m = new Meu_Pagamento(TFDescricao.getText(), DPVencimento.getValue(), DPPagamento.getValue(), new BigDecimal(TFValor.getText()), CBContato.getValue(), CBLancamento.getValue(), CBForma.getValue());
             //Mandando para a camada de serviço salvar
             ServicoMeu_Pagamento.salvar(m);
 
@@ -233,14 +245,37 @@ public class JanelaMeu_PagamentoController implements Initializable {
 
         //Limpando o form
         LimparCampos();
+        
     }
 
     @FXML
     private void Editar(ActionEvent event) {
+            
+        //Pegar o Movimento_Conta que foi selecionado na tabela 
+        Selecionado = TabelaMeuPagamento.getSelectionModel().getSelectedItem();
+
+        //Se tem algum Movimento_Conta selecionado
+        if (Selecionado != null) {
+            
+            //Pega os dados do Movimento_Conta e joga no formulário
+            TFID.setText(String.valueOf(Selecionado.getId_MeuPagamento()));
+            TFDescricao.setText(Selecionado.getDesc_MeuPagamento());
+            DPVencimento.setValue(Selecionado.getVencimento_MeuPagamento());
+            DPPagamento.setValue(Selecionado.getPagamento_MeuPagamento());
+            TFValor.setText(Selecionado.getValor_MeuPagamento().toString());
+            CBContato.setValue(Selecionado.getContato_MeuPagamento());
+            CBLancamento.setValue(Selecionado.getLancamento_MeuPagamento());
+            CBForma.setValue(Selecionado.getForma_MeuPagamento());
+                        
+        }else{//não selecionou Movimento_Conta na tabela
+            AlertaUtil.mensagemErro("Selecione um lançamento.");
+        }
     }
 
     @FXML
     private void Excluir(ActionEvent event) {
+        
+        
     }
     
 }

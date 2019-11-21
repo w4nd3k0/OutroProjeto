@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,12 +23,16 @@ public class Outro_Pagamento {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Integer Id_OutroPagamento;
+    
     private LocalDate Pagamento_OutroPagamento;
     private BigDecimal Valor_OutroPagamento;
     private String Descricao_OutroPagamento;
+    
+    @ManyToOne(optional=false)
     private Contato Contato_OutroPagamento;
+    
+    @ManyToOne(optional=false)
     private Forma_Pagamento Forma_OutroPagamento;
     
     //Construtor vazio da JPA (Obrigatório)

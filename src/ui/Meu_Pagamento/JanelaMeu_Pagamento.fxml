@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Meu_Pagamento.JanelaMeu_PagamentoController">
    <children>
-      <JFXTextField fx:id="TFID" labelFloat="true" layoutX="14.0" layoutY="14.0" promptText="ID" />
+      <JFXTextField fx:id="TFID" editable="false" labelFloat="true" layoutX="14.0" layoutY="14.0" promptText="ID" />
       <JFXTextField fx:id="TFValor" labelFloat="true" layoutX="408.0" layoutY="65.0" promptText="Valor" />
       <JFXComboBox fx:id="CBContato" labelFloat="true" layoutX="14.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Contato" />
       <JFXComboBox fx:id="CBLancamento" labelFloat="true" layoutX="207.0" layoutY="117.0" prefHeight="25.0" prefWidth="171.0" promptText="Lançamento" />
@@ -36,15 +36,17 @@
       <TableView fx:id="TabelaMeuPagamento" layoutX="15.0" layoutY="207.0" prefHeight="179.0" prefWidth="570.0">
         <columns>
           <TableColumn fx:id="COID" prefWidth="44.0" text="ID" />
-          <TableColumn fx:id="COVencimento" prefWidth="106.0" text="Vencimento" />
-            <TableColumn fx:id="COPagamento" prefWidth="75.0" text="Pagamento" />
-            <TableColumn fx:id="COValor" prefWidth="75.0" text="Valor" />
-            <TableColumn fx:id="COContato" prefWidth="99.0" text="Contato" />
-            <TableColumn fx:id="COLancamento" prefWidth="76.0" text="Lançamento" />
-            <TableColumn fx:id="COForma" prefWidth="94.0" text="Forma" />
+          <TableColumn fx:id="COVencimento" prefWidth="77.0" text="Vencimento" />
+            <TableColumn fx:id="COPagamento" prefWidth="68.0" text="Pagamento" />
+            <TableColumn fx:id="COValor" prefWidth="49.0" text="Valor" />
+            <TableColumn fx:id="COContato" prefWidth="79.0" text="Contato" />
+            <TableColumn fx:id="COLancamento" prefWidth="105.0" text="Lançamento" />
+            <TableColumn fx:id="COForma" prefWidth="59.0" text="Forma" />
+            <TableColumn fx:id="CODescricao" prefWidth="90.0" text="Descrição" />
         </columns>
       </TableView>
       <JFXDatePicker fx:id="DPVencimento" layoutX="14.0" layoutY="65.0" promptText="Data Vencimento" />
-      <JFXDatePicker fx:id="DPVencimento" layoutX="207.0" layoutY="65.0" promptText="Data Pagamento" />
+      <JFXDatePicker fx:id="DPPagamento" layoutX="207.0" layoutY="65.0" promptText="Data Pagamento" />
+      <JFXTextField fx:id="TFDescricao" labelFloat="true" layoutX="208.0" layoutY="14.0" prefHeight="25.0" prefWidth="378.0" promptText="Descrição" />
    </children>
 </AnchorPane>
