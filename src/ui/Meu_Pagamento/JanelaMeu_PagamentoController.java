@@ -224,6 +224,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
             if(btn.get() == ButtonType.OK){
                 
                 //Pegar os novos dados do formulário e atualizar o Meu_Pagamento
+                Selecionado.setDesc_MeuPagamento(TFDescricao.getText());
                 Selecionado.setVencimento_MeuPagamento(DPVencimento.getValue());
                 Selecionado.setPagamento_MeuPagamento(DPPagamento.getValue());
                 Selecionado.setValor_MeuPagamento(new BigDecimal(TFValor.getText()));
