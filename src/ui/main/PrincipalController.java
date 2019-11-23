@@ -38,19 +38,19 @@ public class PrincipalController implements Initializable {
     }
 
     @FXML
-    private void AbrirJanelaConta(ActionEvent event) throws IOException {
+    private void AbrirJanelaConta(ActionEvent event) throws IOException{
         
         //Código para abrir uma nova Janela
         //Ler o FXML que representa a nova janela
         //(adicionar o throws)
         Parent root = FXMLLoader.load(getClass()
-                .getResource("/ui/conta/JanelaConta.fxml"));
+                .getResource("/ui/Conta/JanelaConta.fxml"));
         //Criando a cena
         Scene scene = new Scene(root);
         //Criando a janela (STAGE) 
-        Stage stage = new Stage(StageStyle.UTILITY);
+        Stage stage = new Stage(StageStyle.DECORATED);
         //Titulo na janela
-        stage.setTitle("Cadastrar contas");
+        stage.setTitle("Contas");
         //Adicionando a cena na janela
         stage.setScene(scene);
         
@@ -61,7 +61,7 @@ public class PrincipalController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         
         //Mostrando a nova janela
-        stage.show();
+        stage.show();              
     }
 
     @FXML
@@ -75,7 +75,7 @@ public class PrincipalController implements Initializable {
         //Criando a cena
         Scene scene = new Scene(root);
         //Criando a janela (STAGE) 
-        Stage stage = new Stage(StageStyle.UTILITY);
+        Stage stage = new Stage(StageStyle.DECORATED);
         //Titulo na janela
         stage.setTitle("Lançamento Conta");
         //Adicionando a cena na janela

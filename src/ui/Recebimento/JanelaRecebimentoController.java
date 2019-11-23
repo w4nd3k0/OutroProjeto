@@ -12,7 +12,6 @@ import dados.entidades.Contato;
 import dados.entidades.Recebimento;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -26,7 +25,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import servicos.ContatoServico;
-import servicos.FilmeServico;
 import servicos.RecebimentoServico;
 import util.AlertaUtil;
 

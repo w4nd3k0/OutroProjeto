@@ -25,9 +25,10 @@ public class Main extends Application {
         //Abrir maximizado
         stage.setMaximized(true);
         
-        
+        stage.setTitle("Movimento Mensal");
         
         stage.setScene(scene);
+        
         stage.show();
     }
 
