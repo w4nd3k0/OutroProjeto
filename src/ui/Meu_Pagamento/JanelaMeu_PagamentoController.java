@@ -74,9 +74,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
     private TableColumn COForma;
     @FXML
     private TableColumn CODescricao;
-    
-    
-        
+            
     //Atributo que representa os dados para tabela
     private ObservableList<Meu_Pagamento> Dados
             = FXCollections.observableArrayList();
@@ -136,7 +134,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
         COForma.setCellValueFactory(new PropertyValueFactory("Forma_MeuPagamentoNome"));
     }
     
-        private void ListarMeu_PagamentoTabela() {
+    private void ListarMeu_PagamentoTabela() {
         //Limpando quaisquer dados anteriores
         Dados.clear();
 
@@ -204,6 +202,7 @@ public class JanelaMeu_PagamentoController implements Initializable {
 
             //Criando o objeto Meu_Pagamento
             Meu_Pagamento m = new Meu_Pagamento(TFDescricao.getText(), DPVencimento.getValue(), DPPagamento.getValue(), new BigDecimal(TFValor.getText()), CBContato.getValue(), CBLancamento.getValue(), CBForma.getValue());
+            
             //Mandando para a camada de serviço salvar
             ServicoMeu_Pagamento.salvar(m);
 
@@ -276,7 +275,36 @@ public class JanelaMeu_PagamentoController implements Initializable {
     @FXML
     private void Excluir(ActionEvent event) {
         
+        //Pegar a Conta que foi selecionado na tabela
+        Selecionado = TabelaMeuPagamento.getSelectionModel()
+                .getSelectedItem();
         
-    }
-    
+        //Verifica se tem Meu_Pagamento selecionada
+        
+        //existe Conta selecionado
+        if(Selecionado != null){
+            
+            //Pegando a resposta da confirmacao do usuario
+            Optional<ButtonType> btn = 
+                AlertaUtil.mensagemDeConfirmacao("Deseja mesmo excluir?",
+                      "EXCLUIR");
+            
+            //Verificando se apertou o OK
+            if(btn.get() == ButtonType.OK){
+                
+                //Manda para a camada de serviço excluir
+                ServicoMeu_Pagamento.excluir(Selecionado);
+                
+                //mostrar mensagem de sucesso
+                AlertaUtil.mensagemSucesso("Lançamento excluído com sucesso");
+                
+                //Atualizar a tabela
+                ListarMeu_PagamentoTabela();     
+            }
+        
+        //Não existe Conta selecionado
+        }else{
+            AlertaUtil.mensagemErro("Selecione um lançamento.");
+        }
+    } 
 }

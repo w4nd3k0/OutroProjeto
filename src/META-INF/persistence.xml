@@ -19,6 +19,7 @@
         <class>dados.entidades.Forma_Pagamento</class>
         <class>dados.entidades.Lancamento_Conta</class>
         <class>dados.entidades.Meu_Pagamento</class> 
+        <class>dados.entidades.Outro_Pagamento</class> 
         <class>dados.entidades.Movimento_Conta</class>
         <class>dados.entidades.Recebimento</class> 
         

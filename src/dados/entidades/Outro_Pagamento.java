@@ -7,6 +7,8 @@ package dados.entidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +27,9 @@ public class Outro_Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id_OutroPagamento;
     
+    private String Descricao_OutroPagamento;
     private LocalDate Pagamento_OutroPagamento;
     private BigDecimal Valor_OutroPagamento;
-    private String Descricao_OutroPagamento;
     
     @ManyToOne(optional=false)
     private Contato Contato_OutroPagamento;
@@ -35,20 +37,36 @@ public class Outro_Pagamento {
     @ManyToOne(optional=false)
     private Forma_Pagamento Forma_OutroPagamento;
     
+    public String getContato_OutroPagamentoNome(){
+        return Contato_OutroPagamento.getNome_Contato();
+    }
+    
+    public String getForma_OutroPagamentoNome(){
+        return Forma_OutroPagamento.getDescricao_FormaPagamento();
+    }
+    
+    public String getPagamento_OutroPagamentoFormatado(){
+        DateTimeFormatter formatador = DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.MEDIUM);
+        
+        String formatado = Pagamento_OutroPagamento.format(formatador);
+        return formatado;
+    }
+    
     //Construtor vazio da JPA (Obrigatório)
     public Outro_Pagamento() {
     }
     
     /*Construtor*/
 
-    public Outro_Pagamento(LocalDate Pagamento_OutroPagamento, BigDecimal Valor_OutroPagamento, String Descricao_OutroPagamento, Contato Contato_OutroPagamento, Lancamento_Pagamento Lancamento_OutroPagamento, Forma_Pagamento Forma_OutroPagamento) {
+    public Outro_Pagamento(String Descricao_OutroPagamento, LocalDate Pagamento_OutroPagamento, BigDecimal Valor_OutroPagamento, Contato Contato_OutroPagamento, Forma_Pagamento Forma_OutroPagamento) {
+        this.Descricao_OutroPagamento = Descricao_OutroPagamento;
         this.Pagamento_OutroPagamento = Pagamento_OutroPagamento;
         this.Valor_OutroPagamento = Valor_OutroPagamento;
-        this.Descricao_OutroPagamento = Descricao_OutroPagamento;
         this.Contato_OutroPagamento = Contato_OutroPagamento;
         this.Forma_OutroPagamento = Forma_OutroPagamento;
     }
-        
+            
     /*Equals e hashCode*/
     
     @Override

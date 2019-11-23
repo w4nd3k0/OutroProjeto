@@ -24,7 +24,6 @@
                         <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaLancamento_Pagamento" text="Pagamentos" />
                     </items>
                   </Menu>
-                  <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Contas">
@@ -35,7 +34,7 @@
             <Menu mnemonicParsing="false" text="Pagamentos">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaMeuPagamento" text="Meus Pagamentos" />
-                  <MenuItem mnemonicParsing="false" text="Outros Pagamentos" />
+                  <MenuItem mnemonicParsing="false" onAction="#AbrirJanelaOutro_Pagamento" text="Outros Pagamentos" />
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Recebimentos">

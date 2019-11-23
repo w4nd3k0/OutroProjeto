@@ -220,30 +220,38 @@ public class JanelaRecebimentoController implements Initializable {
 
     @FXML
     private void Excuir(ActionEvent event) {
-
-        //Pegar o Recebimento que foi selecionado na tabela 
-        Selecionado = TabelaRecebimento.getSelectionModel().getSelectedItem();
         
-        //Se tem algum Recebimento selecionado
-        if (Selecionado != null) {
+        //Pegar a Conta que foi selecionado na tabela
+        Selecionado = TabelaRecebimento.getSelectionModel()
+                .getSelectedItem();
+        
+        //Verifica se tem Recebimento selecionada
+        
+        //existe Conta selecionado
+        if(Selecionado != null){
             
             //Pegando a resposta da confirmacao do usuario
             Optional<ButtonType> btn = 
                 AlertaUtil.mensagemDeConfirmacao("Deseja mesmo excluir?",
                       "EXCLUIR");
             
-             //Verificando se apertou o OK
+            //Verificando se apertou o OK
             if(btn.get() == ButtonType.OK){
                 
                 //Manda para a camada de serviço excluir
                 ServicoRecebimento.excluir(Selecionado);
                 
                 //mostrar mensagem de sucesso
-                AlertaUtil.mensagemSucesso("Recebimento excluído com sucesso");
+                AlertaUtil.mensagemSucesso("Lançamento excluído com sucesso");
                 
-                //Carregando lista de Recebimentos
-                ListarRecebimentoTabela();
+                //Atualizar a tabela
+                ListarRecebimentoTabela();     
             }
+        
+        //Não existe Conta selecionado
+        }else{
+            AlertaUtil.mensagemErro("Selecione um lançamento.");
         }
+        
     }   
 }

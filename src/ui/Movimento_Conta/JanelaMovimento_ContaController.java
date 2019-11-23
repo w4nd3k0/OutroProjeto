@@ -257,29 +257,36 @@ public class JanelaMovimento_ContaController implements Initializable {
     @FXML
     private void Excluir(ActionEvent event) {
         
-        //Pegar o Movimento_Conta que foi selecionado na tabela 
-        Selecionado = TabelaMovimento_Conta.getSelectionModel().getSelectedItem();
+        //Pegar a Conta que foi selecionado na tabela
+        Selecionado = TabelaMovimento_Conta.getSelectionModel()
+                .getSelectedItem();
         
-        //Se tem algum Movimento_Conta selecionado
-        if (Selecionado != null) {
+        //Verifica se tem Conta selecionada
+        
+        //existe Conta selecionado
+        if(Selecionado != null){
             
             //Pegando a resposta da confirmacao do usuario
             Optional<ButtonType> btn = 
                 AlertaUtil.mensagemDeConfirmacao("Deseja mesmo excluir?",
                       "EXCLUIR");
             
-             //Verificando se apertou o OK
+            //Verificando se apertou o OK
             if(btn.get() == ButtonType.OK){
                 
                 //Manda para a camada de serviço excluir
                 ServicoMovimento_Conta.excluir(Selecionado);
                 
                 //mostrar mensagem de sucesso
-                AlertaUtil.mensagemSucesso("Lançamento excluído com sucesso");
+                AlertaUtil.mensagemSucesso("Lançamento excluída com sucesso");
                 
-                //Carregando lista de Movimento_Conta
-                ListarMovimento_ContaTabela();
+                //Atualizar a tabela
+                ListarMovimento_ContaTabela();     
             }
+        
+        //Não existe Conta selecionado
+        }else{
+            AlertaUtil.mensagemErro("Selecione um lançamento.");
         }
     }
 }
