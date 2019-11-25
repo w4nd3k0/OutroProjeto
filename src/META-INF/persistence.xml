@@ -5,15 +5,15 @@
     <!-- Implementação do JPA, no nosso caso Hibernate -->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Aqui devem ser listadas todas as entidades criadas -->
-    <class>dados.entidades.Conta</class>
-    <class>dados.entidades.Contato</class>
-    <class>dados.entidades.Forma_Pagamento</class>
-    <class>dados.entidades.Lancamento_Conta</class>
-    <class>dados.entidades.Lancamento_Pagamento</class>
-    <class>dados.entidades.Meu_Pagamento</class>
-    <class>dados.entidades.Outro_Pagamento</class>
-    <class>dados.entidades.Movimento_Conta</class>
-    <class>dados.entidades.Recebimento</class>
+    <class>Dados.Entidades.Recebimento</class>
+    <class>Dados.Entidades.Meu_Pagamento</class>
+    <class>Dados.Entidades.Conta</class>
+    <class>Dados.Entidades.Lancamento_Pagamento</class>
+    <class>Dados.Entidades.Contato</class>
+    <class>Dados.Entidades.Lancamento_Conta</class>
+    <class>Dados.Entidades.Movimento_Conta</class>
+    <class>Dados.Entidades.Outro_Pagamento</class>
+    <class>Dados.Entidades.Forma_Pagamento</class>
     <properties>
       <!-- Driver de Acesso ao BD -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

@@ -8,8 +8,8 @@ package ui.Recebimento;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import dados.entidades.Contato;
-import dados.entidades.Recebimento;
+import Dados.Entidades.Contato;
+import Dados.Entidades.Recebimento;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
@@ -24,9 +24,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import servicos.ContatoServico;
-import servicos.RecebimentoServico;
-import util.AlertaUtil;
+import Servicos.ContatoServico;
+import Servicos.RecebimentoServico;
+import Util.AlertaUtil;
 
 /**
  * FXML Controller class

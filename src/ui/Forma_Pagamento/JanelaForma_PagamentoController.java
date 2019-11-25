@@ -6,8 +6,8 @@
 package ui.Forma_Pagamento;
 
 import com.jfoenix.controls.JFXTextField;
-import dados.entidades.Conta;
-import dados.entidades.Forma_Pagamento;
+import Dados.Entidades.Conta;
+import Dados.Entidades.Forma_Pagamento;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +21,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import servicos.Forma_PagamentoServico;
-import util.AlertaUtil;
+import Servicos.Forma_PagamentoServico;
+import Util.AlertaUtil;
 
 /**
  * FXML Controller class

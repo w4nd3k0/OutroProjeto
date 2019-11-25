@@ -6,7 +6,7 @@
 package ui.Lancamento_Pagamento;
 
 import com.jfoenix.controls.JFXTextField;
-import dados.entidades.Lancamento_Pagamento;
+import Dados.Entidades.Lancamento_Pagamento;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +20,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import servicos.Lancamento_PagamentoServico;
-import util.AlertaUtil;
+import Servicos.Lancamento_PagamentoServico;
+import Util.AlertaUtil;
 
 /**
  * FXML Controller class

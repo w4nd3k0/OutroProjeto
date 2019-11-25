@@ -8,9 +8,9 @@ package ui.Outro_Pagamento;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import dados.entidades.Contato;
-import dados.entidades.Forma_Pagamento;
-import dados.entidades.Outro_Pagamento;
+import Dados.Entidades.Contato;
+import Dados.Entidades.Forma_Pagamento;
+import Dados.Entidades.Outro_Pagamento;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
@@ -26,10 +26,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import servicos.ContatoServico;
-import servicos.Forma_PagamentoServico;
-import servicos.Outro_PagamentoServico;
-import util.AlertaUtil;
+import Servicos.ContatoServico;
+import Servicos.Forma_PagamentoServico;
+import Servicos.Outro_PagamentoServico;
+import Util.AlertaUtil;
 
 /**
  * FXML Controller class

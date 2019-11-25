@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.Contato;
+package ui.Conta;
 
 import com.jfoenix.controls.JFXTextField;
 import Dados.Entidades.Conta;
-import Dados.Entidades.Contato;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import Servicos.ContatoServico;
+import Servicos.ContaServico;
 import Util.AlertaUtil;
 
 /**
@@ -29,28 +28,26 @@ import Util.AlertaUtil;
  *
  * @author W4ND3K0
  */
-public class JanelaContatoController implements Initializable {
+public class JanelaContaController implements Initializable {
+    
+    @FXML
+    private JFXTextField TFIDConta;
+    @FXML
+    private JFXTextField TFNomeConta;
+    @FXML
+    private JFXTextField TFBancoConta;
+    @FXML
+    private JFXTextField TFAgenciaConta;
+    @FXML
+    private JFXTextField TFNumeroConta;
 
     @FXML
-    private JFXTextField TFID;
-    @FXML
-    private JFXTextField TFNome;
-    @FXML
-    private JFXTextField TFTelefone;
-    @FXML
-    private JFXTextField TFBanco;
-    @FXML
-    private JFXTextField TFAgencia;
-    @FXML
-    private JFXTextField TFConta;
-    @FXML
-    private TableView<Contato> TabelaContato;
+    private TableView<Conta> TabelaConta;
+    
     @FXML
     private TableColumn COID;
     @FXML
     private TableColumn CONome;
-    @FXML
-    private TableColumn CoTelefone;
     @FXML
     private TableColumn COBanco;
     @FXML
@@ -59,15 +56,16 @@ public class JanelaContatoController implements Initializable {
     private TableColumn COConta;
     
     //Atributo para representar o servico
-    private ContatoServico Servico = new ContatoServico();
+    private ContaServico Servico = new ContaServico();
     
    //Atributo que representa os dados para tabela
-    private ObservableList<Contato> Dados
+    private ObservableList<Conta> Dados
             = FXCollections.observableArrayList();
 
-    //Atributo que vai armazenar qual o Contato foi selecionado na tabela
-    private Contato Selecionado;
-    
+    //Atributo que vai armazenar qual a conta foi selecionado na tabela
+    private Conta Selecionado;
+
+
     /**
      * Initializes the controller class.
      */
@@ -75,10 +73,10 @@ public class JanelaContatoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         //Configure a tabela
-        ConfigurarTabelaContato();
+        ConfigurarTabelaConta();
 
-        //Carregue a lista de Contatos na tabela
-        ListarContatoTabela();
+        //Carregue a lista de Contas na tabela
+        ListarContaTabela();
     }
     
     /**
@@ -86,18 +84,17 @@ public class JanelaContatoController implements Initializable {
     */
     private void LimparCampos(){
         //Limpando o form
-        TFID.setText("");
-        TFNome.setText("");
-        TFTelefone.setText("");
-        TFBanco.setText("");
-        TFAgencia.setText("");
-        TFConta.setText("");
+        TFIDConta.setText("");
+        TFNomeConta.setText("");
+        TFBancoConta.setText("");
+        TFAgenciaConta.setText("");
+        TFNumeroConta.setText("");
     }
     
     /**
     * Fazendo configuração das colunas da tabela
     */
-    private void ConfigurarTabelaContato() {
+    private void ConfigurarTabelaConta() {
 
         //Dizer de onde a coluna vai pegar o valor para
         //exibir, basta dizer o nome do metodo get
@@ -105,29 +102,28 @@ public class JanelaContatoController implements Initializable {
         // A string entre parênteses é o nome do atributo
         // que vc deseja chamar o get (quase sempre)
         //import javafx.scene.control.cell.PropertyValueFactory;
-        COID.setCellValueFactory(new PropertyValueFactory("Id_Contato"));        
-        CONome.setCellValueFactory(new PropertyValueFactory("Nome_Contato"));
-        CoTelefone.setCellValueFactory(new PropertyValueFactory("Telefone_Contato"));        
-        COBanco.setCellValueFactory(new PropertyValueFactory("Banco_Contato"));
-        COAgencia.setCellValueFactory(new PropertyValueFactory("Agencia_Contato"));
-        COConta.setCellValueFactory(new PropertyValueFactory("Conta_Contato"));
+        COID.setCellValueFactory(new PropertyValueFactory("Id_Conta"));
+        CONome.setCellValueFactory(new PropertyValueFactory("Nome_Conta"));
+        COBanco.setCellValueFactory(new PropertyValueFactory("Banco_Conta"));
+        COAgencia.setCellValueFactory(new PropertyValueFactory("Agencia_Conta"));
+        COConta.setCellValueFactory(new PropertyValueFactory("Numero_Conta"));
     }
     
     /**
-    * Responsável por carregar a lista de Contatos na tabela
+    * Responsável por carregar a lista de atores na tabela
     */
-    private void ListarContatoTabela() {
+    private void ListarContaTabela() {
         //Limpando quaisquer dados anteriores
         Dados.clear();
 
-        //Solicitando a camada de servico a lista de Contato
-        List<Contato> Conta = Servico.listar();
+        //Solicitando a camada de servico a lista de Conta
+        List<Conta> Conta = Servico.listar();
 
-        //Transformar a lista de Contatos no formato que a tabela do JavaFX aceita
+        //Transformar a lista de Contas no formato que a tabela do JavaFX aceita
         Dados = FXCollections.observableArrayList(Conta);
 
         //Jogando os dados na tabela
-        TabelaContato.setItems(Dados);
+        TabelaConta.setItems(Dados);
 
     }
 
@@ -135,20 +131,20 @@ public class JanelaContatoController implements Initializable {
     private void Salvar(ActionEvent event) {
         
         //Verificar se está atualizando ou inserindo
-        
-        if(TFID.getText().isEmpty()){ //inserindo
-            //Pega os dados do fomulário e cria um objeto Contato
-            Contato a = new Contato(TFNome.getText(), TFTelefone.getText(), TFBanco.getText(), TFAgencia.getText(), TFConta.getText());
+        if(TFIDConta.getText().isEmpty()){ //inserindo
+            //Pega os dados do fomulário e cria um objeto Conta
+            Conta a = new Conta(TFNomeConta.getText(), TFBancoConta.getText(), TFAgenciaConta.getText(), TFNumeroConta.getText());
+
             //Mandar a Conta para a camada de servico
             Servico.salvar(a);
             
             //Exibindo mensagem
-            AlertaUtil.mensagemSucesso("Contato salvo com sucesso!");
+            AlertaUtil.mensagemSucesso("Conta salva com sucesso!");
             
             //Chama o metodo para atualizar a tabela
-            ListarContatoTabela();
+            ListarContaTabela();
             
-        }else{ //atualizando o Contato
+        }else{ //atualizando a Conta
            
             //Pegando a resposta da confirmacao do usuario
             Optional<ButtonType> btn = 
@@ -158,22 +154,22 @@ public class JanelaContatoController implements Initializable {
             //Se o botão OK foi pressionado
             if(btn.get() == ButtonType.OK){
                 //Pegar os novos dados do formulário e atualizar a Conta
-                Selecionado.setNome_Contato(TFNome.getText());
-                Selecionado.setTelefone_Contato(TFTelefone.getText());
-                Selecionado.setBanco_Contato(TFBanco.getText());
-                Selecionado.setAgencia_Contato(TFAgencia.getText());
-                Selecionado.setConta_Contato(TFConta.getText());
+                Selecionado.setNome_Conta(TFNomeConta.getText());
+                Selecionado.setBanco_Conta(TFBancoConta.getText());
+                Selecionado.setAgencia_Conta(TFAgenciaConta.getText());
+                Selecionado.setNumero_Conta(TFNumeroConta.getText());
                 
                 //Mandando pra camada de serviço salvar as alterações
                 Servico.editar(Selecionado);
                 
                 //Exibindo mensagem
-                AlertaUtil.mensagemSucesso("Contato atualizada com sucesso!"); 
+                AlertaUtil.mensagemSucesso("Conta atualizada com sucesso!"); 
                 
                 //Chama o metodo para atualizar a tabela
-                 ListarContatoTabela();
+                 ListarContaTabela();
             }
         }
+
         //Limpando os campos do form
         LimparCampos();
     }
@@ -181,40 +177,39 @@ public class JanelaContatoController implements Initializable {
     @FXML
     private void Editar(ActionEvent event) {
         
-        //Pegar o Contato que foi selecionado na tabela
-        Selecionado = TabelaContato.getSelectionModel()
+        //Pegar a Conta que foi selecionado na tabela
+        Selecionado = TabelaConta.getSelectionModel()
                 .getSelectedItem();
 
-        //Se tem alguma Contato selecionado
+        //Se tem alguma Conta selecionado
         
-        //tem Contato selecionado
+        //tem Conta selecionado
         if (Selecionado != null) {
             
             //Pegar os dados da Conta e jogar nos campos do formulario
-            TFID.setText(String.valueOf(Selecionado.getId_Contato()));
-            TFNome.setText(Selecionado.getNome_Contato());
-            TFTelefone.setText(Selecionado.getTelefone_Contato());
-            TFBanco.setText(Selecionado.getBanco_Contato());
-            TFAgencia.setText(Selecionado.getAgencia_Contato());
-            TFConta.setText(Selecionado.getConta_Contato());
+            TFIDConta.setText(String.valueOf(Selecionado.getId_Conta()));
+            TFNomeConta.setText(Selecionado.getNome_Conta());
+            TFBancoConta.setText(Selecionado.getBanco_Conta());
+            TFAgenciaConta.setText(Selecionado.getAgencia_Conta());
+            TFNumeroConta.setText(Selecionado.getNumero_Conta());
         
-        //não tem Contato selecionado na tabela
+        //não tem conta selecionado na tabela
         
         }else{
-            AlertaUtil.mensagemErro("Selecione um contato.");
+            AlertaUtil.mensagemErro("Selecione uma conta.");
         }
     }
 
     @FXML
     private void Excuir(ActionEvent event) {
         
-        //Pegar o Contato que foi selecionado na tabela
-        Selecionado = TabelaContato.getSelectionModel()
+        //Pegar a Conta que foi selecionado na tabela
+        Selecionado = TabelaConta.getSelectionModel()
                 .getSelectedItem();
         
-        //Verifica se tem Contato selecionada
+        //Verifica se tem Conta selecionada
         
-        //existe Contato selecionado
+        //existe Conta selecionado
         if(Selecionado != null){
             
             //Pegando a resposta da confirmacao do usuario
@@ -229,15 +224,15 @@ public class JanelaContatoController implements Initializable {
                 Servico.excluir(Selecionado);
                 
                 //mostrar mensagem de sucesso
-                AlertaUtil.mensagemSucesso("Contato excluída com sucesso");
+                AlertaUtil.mensagemSucesso("Conta excluída com sucesso");
                 
                 //Atualizar a tabela
-                ListarContatoTabela();     
+                ListarContaTabela();     
             }
         
         //Não existe Conta selecionado
         }else{
             AlertaUtil.mensagemErro("Selecione uma conta.");
         }
-    }   
+    }
 }
